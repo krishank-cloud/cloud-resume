@@ -23,9 +23,15 @@ jobs:
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} --delete --exclude ".git/*"
 
-      - name: Invalidate CloudFront Cache
-        run: aws cloudfront create-invalidation --distribution-id E2AM7VX35M2P6F --paths "/dashboard.html"
-        
+      - name: Invalidate CloudFront: Dashboard
+        run: aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.DASHBOARD_DIST_ID }} \
+          --paths "/dashboard.html"
+
+      - name: Invalidate CloudFront: Main Site
+        run: aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.MAIN_DIST_ID }} \
+          --paths "/index.html"
 
       - name: Invalidate CloudFront cache
         run: |
