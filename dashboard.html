@@ -1,13 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cloud Dashboard</title>
-  <link rel="icon" href="data:,">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Traffic Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      background: #1e293b;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+      display: inline-block;
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+    }
+
+    .label {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    .value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+  </style>
 </head>
-<body style="text-align:center; font-family:sans-serif;">
-  <h1>🌐 Dashboard</h1> <h2>Deployed on: 2025/04/13</h2>
-  <p>Total Views: <span id="total-views">Loading...</span></p>
-  <p>Unique Visitors Today: <span id="unique-visitors">Loading...</span></p>
+<body>
+  <h1>📊 Cloud Resume Visitor Stats</h1>
+
+  <div class="badge">
+    <span class="label">Total Views</span>
+    <span class="value" id="total-views">...</span>
+  </div>
+
+  <div class="badge">
+    <span class="label">Unique Visitors Today</span>
+    <span class="value" id="unique-visitors">...</span>
+  </div>
+
+  <footer>Powered by AWS Lambda, API Gateway, and DynamoDB</footer>
 
   <script>
     fetch("https://ucm5rq40q1.execute-api.ap-southeast-2.amazonaws.com/prod/dashboard")
@@ -19,6 +79,7 @@
       .catch(err => {
         document.getElementById("total-views").textContent = "Error";
         document.getElementById("unique-visitors").textContent = "Error";
+        console.error(err);
       });
   </script>
 </body>
