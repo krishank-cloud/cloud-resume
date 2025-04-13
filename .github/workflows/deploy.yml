@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,17 +25,13 @@ jobs:
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} --delete --exclude ".git/*"
 
       - name: Invalidate CloudFront: Dashboard
-        run: aws cloudfront create-invalidation \
-          --distribution-id ${{ secrets.DASHBOARD_DIST_ID }} \
-          --paths "/dashboard.html"
-
-      - name: Invalidate CloudFront: Main Site
-        run: aws cloudfront create-invalidation \
-          --distribution-id ${{ secrets.MAIN_DIST_ID }} \
-          --paths "/index.html"
-
-      - name: Invalidate CloudFront cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} \
-            --paths "/*"
+            --distribution-id ${{ secrets.DASHBOARD_DIST_ID }} \
+            --paths "/dashboard.html"
+
+      - name: Invalidate CloudFront: Main Site
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.MAIN_DIST_ID }} \
+            --paths "/index.html"
