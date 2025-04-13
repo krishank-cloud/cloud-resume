@@ -24,7 +24,7 @@ jobs:
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} --delete --exclude ".git/*"
 
       - name: Invalidate CloudFront Cache
-        run: aws cloudfront create-invalidation --distribution-id E4IPJHLK8OK08 --paths "/dashboard.html"
+        run: aws cloudfront create-invalidation --distribution-id E2AM7VX35M2P6F --paths "/dashboard.html"
         
 
       - name: Invalidate CloudFront cache
