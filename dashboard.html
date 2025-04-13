@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Dashboard</title>
+</head>
+<body style="text-align:center; font-family:sans-serif;">
+  <h1>🌐 Dashboard</h1>
+  <p>Total Views: <span id="total-views">Loading...</span></p>
+  <p>Unique Visitors Today: <span id="unique-visitors">Loading...</span></p>
+
+  <script>
+    fetch("https://YOUR-API-ID.execute-api.ap-southeast-2.amazonaws.com/prod/dashboard")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("total-views").textContent = data.views;
+        document.getElementById("unique-visitors").textContent = data.unique_visitors_today;
+      })
+      .catch(err => {
+        document.getElementById("total-views").textContent = "Error";
+        document.getElementById("unique-visitors").textContent = "Error";
+      });
+  </script>
+</body>
+</html>
