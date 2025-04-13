@@ -1,39 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishan Kumar - Cloud Portfolio</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
-        .container { max-width: 800px; margin: auto; padding: 20px; background: white; box-shadow: 0px 0px 10px gray; border-radius: 10px; }
-        h1 { color: #333; }
-        p { font-size: 18px; }
-        .button { display: inline-block; padding: 10px 20px; margin: 10px; background: #0073e6; color: white; text-decoration: none; border-radius: 5px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krishan Kumar - Cloud Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(to bottom right, #0f172a, #1e293b);
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 720px;
+      width: 100%;
+      padding: 2rem;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.25rem;
+      color: #38bdf8;
+    }
+    h3 {
+      font-weight: 400;
+      margin-top: 0;
+      color: #cbd5e1;
+    }
+    h2 {
+      color: #e2e8f0;
+      margin-top: 2rem;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+    .button {
+      display: inline-block;
+      margin: 1rem 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #38bdf8;
+      color: #0f172a;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .button:hover {
+      background-color: #0ea5e9;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Krishan Kumar</h1>
-        <h3>AWS Certified Cloud Practitioner | Aspiring Cloud Engineer</h3>
-        <p>Welcome to my cloud portfolio! I'm passionate about cloud computing and eager to start my career in the industry.</p>
+  <div class="container">
+    <h1>Krishan Kumar</h1>
+    <h3>AWS Certified Cloud Practitioner · Aspiring Cloud Engineer</h3>
 
-        <h2>Skills</h2>
-        <p>AWS, Linux, Networking, Python, GitHub, Cloud Security</p>
+    <p>Welcome to my cloud portfolio! I'm passionate about cloud computing and eager to start my career in the industry.</p>
 
-        <h2>Certifications</h2>
-        <p>AWS Certified Cloud Practitioner</p>
+    <h2>Skills</h2>
+    <p>AWS · Linux · Networking · Python · GitHub · Cloud Security</p>
 
-        <h2>Projects</h2>
-        <p>Check out my GitHub for cloud-related projects!</p>
+    <h2>Certifications</h2>
+    <p>AWS Certified Cloud Practitioner</p>
 
-        <a href="https://github.com/krishank-cloud" class="button" target="_blank">GitHub</a>
-        <a href="resume.pdf" class="button" target="_blank">Download Resume</a>
-    </div>
+    <h2>Projects</h2>
+    <p>Check out my GitHub and traffic dashboard!</p>
 
-    <p class="visitor-line">Visitors: <span id="visitor-count">Loading...</span></p>
-
-    <script src="script.js"></script>
-    
+    <a href="https://github.com/krishank-cloud" class="button" target="_blank">🌐 GitHub</a>
+    <a href="resume.pdf" class="button" target="_blank">📄 Resume</a>
+    <a href="https://dashboard.krishankcloud.com" class="button" target="_blank">📊 View Live Dashboard</a>
+  </div>
 </body>
 </html>
