@@ -1,74 +1,93 @@
+<!-- START: dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Live Traffic Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
-      font-family: system-ui, sans-serif;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(to bottom right, #0f172a, #1e293b);
+      color: #f8fafc;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      background: #0f172a;
-      color: #f1f5f9;
+      min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
     }
-
     h1 {
-      font-size: 2rem;
+      font-size: 2.25rem;
       margin-bottom: 1rem;
+      animation: fadeIn 1s ease-in-out;
     }
-
+    .logo {
+      width: 80px;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
     .badge {
-      background: #1e293b;
+      background: rgba(255, 255, 255, 0.05);
       padding: 1rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.05);
-      display: inline-block;
-      margin: 0.5rem 0;
-      font-size: 1.25rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
-
     .label {
       font-size: 0.875rem;
-      color: #94a3b8;
-      margin-bottom: 0.25rem;
-      display: block;
+      color: #cbd5e1;
     }
-
     .value {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
       font-weight: bold;
       color: #38bdf8;
     }
-
     footer {
       position: absolute;
       bottom: 1rem;
-      font-size: 0.8rem;
-      color: #64748b;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
 <body>
-  <h1>📊 Cloud Resume Visitor Stats</h1>
-
-  <div class="badge">
-    <span class="label">Total Views</span>
-    <span class="value" id="total-views">...</span>
+  <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/AWS_Simple_Icons_Compute_AWS_Lambda.svg/1024px-AWS_Simple_Icons_Compute_AWS_Lambda.svg.png" alt="Lambda Logo"/>
+  <h1>🚀 Cloud Resume Dashboard</h1>
+  <div class="stats">
+    <div class="badge">
+      <div class="label">Total Views</div>
+      <div class="value" id="total-views">...</div>
+    </div>
+    <div class="badge">
+      <div class="label">Unique Visitors Today</div>
+      <div class="value" id="unique-visitors">...</div>
+    </div>
   </div>
-
-  <div class="badge">
-    <span class="label">Unique Visitors Today</span>
-    <span class="value" id="unique-visitors">...</span>
-  </div>
-
   <footer>Powered by AWS Lambda, API Gateway, and DynamoDB</footer>
-
   <script>
     fetch("https://ucm5rq40q1.execute-api.ap-southeast-2.amazonaws.com/prod/dashboard")
       .then(res => res.json())
@@ -77,10 +96,4 @@
         document.getElementById("unique-visitors").textContent = data.unique_visitors_today;
       })
       .catch(err => {
-        document.getElementById("total-views").textContent = "Error";
-        document.getElementById("unique-visitors").textContent = "Error";
-        console.error(err);
-      });
-  </script>
-</body>
-</html>
+        document.getElementById("total-views").text
