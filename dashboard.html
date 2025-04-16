@@ -6,6 +6,42 @@
   <title>Live Traffic Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    .deploy-badge {
+  margin-top: 50px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.badge-container {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #4b6cb7, #182848);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 0 15px rgba(72, 149, 239, 0.5);
+  animation: pulse 2.5s infinite;
+  transition: transform 0.2s ease;
+}
+
+.cloud-icon {
+  font-size: 18px;
+  margin-right: 8px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px rgba(72, 149, 239, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(72, 149, 239, 0.9); }
+  100% { box-shadow: 0 0 10px rgba(72, 149, 239, 0.5); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -88,6 +124,13 @@
       <div class="value" id="unique-visitors">0</div>
     </div>
   </div>
+
+  <footer class="deploy-badge">
+    <div class="badge-container">
+      <span class="cloud-icon">☁️</span>
+      <span>Deployed via GitHub Actions</span>
+    </div>
+  </footer>
 
   <footer style="margin-top: 40px;">
     <p>
