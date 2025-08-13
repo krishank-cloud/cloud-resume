@@ -7,106 +7,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
     .deploy-badge {
-  margin-top: 50px;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.badge-container {
-  display: inline-flex;
-  align-items: center;
-  background: linear-gradient(135deg, #4b6cb7, #182848);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 25px;
-  font-size: 14px;
-  box-shadow: 0 0 15px rgba(72, 149, 239, 0.5);
-  animation: pulse 2.5s infinite;
-  transition: transform 0.2s ease;
-}
-
-.cloud-icon {
-  font-size: 18px;
-  margin-right: 8px;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 10px rgba(72, 149, 239, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(72, 149, 239, 0.9); }
-  100% { box-shadow: 0 0 10px rgba(72, 149, 239, 0.5); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
+      margin-top: 50px;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .badge-container {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 14px;
+      box-shadow: 0 0 15px rgba(72, 149, 239, 0.5);
+      animation: pulse 2.5s infinite;
+      transition: transform 0.2s ease;
+    }
+    .cloud-icon { font-size: 18px; margin-right: 8px; animation: float 4s ease-in-out infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 10px rgba(72,149,239,.5);} 50% { box-shadow: 0 0 20px rgba(72,149,239,.9);} 100% { box-shadow: 0 0 10px rgba(72,149,239,.5);} }
+    @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-3px);} }
 
     * { box-sizing: border-box; }
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: 'Outfit', sans-serif;
       background: linear-gradient(to bottom right, #0f172a, #1e293b);
       color: #f8fafc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
-      text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh; overflow: hidden; text-align: center;
     }
-    h1 {
-      font-size: 2.25rem;
-      margin-bottom: 1rem;
-      animation: fadeIn 1s ease-in-out;
-    }
-    .logo {
-      width: 80px;
-      margin-bottom: 1rem;
-      animation: pulse 2s infinite;
-    }
-    .stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      animation: fadeInUp 1.2s ease-in-out;
-    }
-    .badge {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1rem 2rem;
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    .label {
-      font-size: 0.875rem;
-      color: #cbd5e1;
-    }
-    .value {
-      font-size: 2.25rem;
-      font-weight: bold;
-      color: #38bdf8;
-    }
-    footer {
-      position: absolute;
-      bottom: 1rem;
-      font-size: 0.75rem;
-      color: #94a3b8;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-10px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    h1 { font-size: 2.25rem; margin-bottom: 1rem; animation: fadeIn 1s ease-in-out; }
+    .logo { width: 80px; margin-bottom: 1rem; animation: pulse 2s infinite; }
+    .stats { display: flex; flex-direction: column; gap: 1rem; animation: fadeInUp 1.2s ease-in-out; }
+    .badge { background: rgba(255,255,255,0.05); padding: 1rem 2rem; border-radius: 16px; backdrop-filter: blur(10px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .label { font-size: .875rem; color: #cbd5e1; }
+    .value { font-size: 2.25rem; font-weight: bold; color: #38bdf8; }
+
+    .footer-note { margin-top: 16px; font-size: .9rem; color: #94a3b8; }
+    footer { position: absolute; bottom: 1rem; font-size: .75rem; color: #94a3b8; }
+
+    @keyframes fadeIn { 0% { opacity: 0; transform: translateY(-10px);} 100% { opacity: 1; transform: translateY(0);} }
+    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px);} 100% { opacity: 1; transform: translateY(0);} }
+    @keyframes pulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.05);} }
   </style>
 </head>
 <body>
@@ -125,6 +67,10 @@
     </div>
   </div>
 
+  <p class="footer-note">
+    Want to see how this was built? <a href="/security.html">View Project Details</a>
+  </p>
+
   <footer class="deploy-badge">
     <div class="badge-container">
       <span class="cloud-icon">☁️</span>
@@ -136,11 +82,11 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      fetch("https://ucm5rq40q1.execute-api.ap-southeast-2.amazonaws.com/prod/dashboard")
+      fetch("https://ucm5rq40q1.execute-api.ap-southeast-2.amazonaws.com/prod/dashboard", { cache: "no-store" })
         .then(res => res.json())
         .then(data => {
           document.getElementById("total-views").textContent = data.views ?? "N/A";
-          document.getElementById("unique-visitors").textContent = data.unique_visitors_today ?? "N/A";
+          document.getElementById("unique-visitors").textContent = data.uniquesToday ?? "N/A"; // <- fixed key
         })
         .catch(err => {
           document.getElementById("total-views").textContent = "Error";

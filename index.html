@@ -6,9 +6,7 @@
   <title>Krishan Kumar - Cloud Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Outfit', sans-serif;
@@ -30,25 +28,10 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
       text-align: center;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.25rem;
-      color: #38bdf8;
-    }
-    h3 {
-      font-weight: 400;
-      margin-top: 0;
-      color: #cbd5e1;
-    }
-    h2 {
-      color: #e2e8f0;
-      margin-top: 2rem;
-    }
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #cbd5e1;
-    }
+    h1 { font-size: 2.5rem; margin-bottom: 0.25rem; color: #38bdf8; }
+    h3 { font-weight: 400; margin-top: 0; color: #cbd5e1; }
+    h2 { color: #e2e8f0; margin-top: 2rem; }
+    p  { font-size: 1rem; line-height: 1.6; color: #cbd5e1; }
     .button {
       display: inline-block;
       margin: 1rem 0.5rem;
@@ -61,8 +44,11 @@
       text-decoration: none;
       transition: background 0.3s ease;
     }
-    .button:hover {
-      background-color: #0ea5e9;
+    .button:hover { background-color: #0ea5e9; }
+    .button-outline {
+      background: transparent;
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
     }
   </style>
 </head>
@@ -80,11 +66,12 @@
     <p>AWS Certified Cloud Practitioner</p>
 
     <h2>Projects</h2>
-    <p>Check out my GitHub and traffic dashboard!</p>
+    <p>Cloud Resume + Live Dashboard with secure CloudFront OAC, API Gateway + Lambda (Python), DynamoDB, CI/CD, and CloudWatch metrics.</p>
 
     <a href="https://github.com/krishank-cloud" class="button" target="_blank">🌐 GitHub</a>
     <a href="resume.pdf" class="button" target="_blank">📄 Resume</a>
     <a href="https://dashboard.krishankcloud.com" class="button" target="_blank">📊 View Live Dashboard</a>
+    <a href="/security.html" class="button button-outline">🔐 Project Details</a>
   </div>
 </body>
 </html>
