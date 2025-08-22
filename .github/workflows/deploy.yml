@@ -2,36 +2,56 @@ name: Deploy to S3 and Invalidate CloudFront
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+    paths:
+      - "index.html"
+      - "dashboard.html"
+      - "assets/**"
+      - ".github/workflows/**"
+  workflow_dispatch: {}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy to S3
+      # Sync static assets (images/css/js) but NOT the HTML; exclude git/workflow files
+      - name: Sync assets to S3
         run: |
-          aws s3 sync . s3://${{ secrets.S3_BUCKET }} --delete --exclude ".git/*"
+          aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "deploy*.*" \
+            --exclude "README.md" \
+            --exclude "index.html" \
+            --exclude "dashboard.html"
 
-      - name: "Invalidate CloudFront: Dashboard"
+      # Upload HTML with correct headers so browsers don’t cache stale pages
+      - name: Upload HTML with cache-busting headers
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.DASHBOARD_DIST_ID }} \
-            --paths "/dashboard.html"
+          aws s3 cp index.html s3://${{ secrets.S3_BUCKET }}/index.html \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "no-store"
+          aws s3 cp dashboard.html s3://${{ secrets.S3_BUCKET }}/dashboard.html \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "no-store"
 
-      - name: "Invalidate CloudFront: Main Site"
+      # Invalidate both CloudFront distributions (broader = safer; tighten later if you want)
+      - name: Invalidate CloudFront (main + dashboard)
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.MAIN_DIST_ID }} \
-            --paths "/index.html"
+            --paths "/*"
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.DASHBOARD_DIST_ID }} \
+            --paths "/*"
