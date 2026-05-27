@@ -4,73 +4,377 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Krishan Kumar - Cloud Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Krishan Kumar cloud portfolio showcasing AWS Cloud Practitioner certification, Cert IV IT study, and a hands-on AWS cloud resume project using S3, CloudFront, Lambda, DynamoDB, CloudWatch and GitHub Actions." />
+
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #f59e0b;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Outfit', sans-serif;
-      background: linear-gradient(to bottom right, #0f172a, #1e293b);
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a 45%, #1e293b);
+      color: var(--text);
+      line-height: 1.6;
     }
+
+    a {
+      color: inherit;
+    }
+
     .container {
-      max-width: 720px;
-      width: 100%;
-      padding: 2rem;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      text-align: center;
+      width: min(1120px, 92%);
+      margin: 0 auto;
+      padding: 36px 0 52px;
     }
-    h1 { font-size: 2.5rem; margin-bottom: 0.25rem; color: #38bdf8; }
-    h3 { font-weight: 400; margin-top: 0; color: #cbd5e1; }
-    h2 { color: #e2e8f0; margin-top: 2rem; }
-    p  { font-size: 1rem; line-height: 1.6; color: #cbd5e1; }
+
+    .hero {
+      padding: clamp(30px, 5vw, 56px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.96), rgba(30, 41, 59, 0.94));
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+      text-align: left;
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      color: #f8fafc;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: #e0f2fe;
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      font-weight: 700;
+    }
+
+    .hero p {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: 1.06rem;
+      margin: 0;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      border: 1px solid var(--border);
+      background: rgba(56, 189, 248, 0.08);
+      color: #e0f2fe;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+
+    .badge.gold {
+      background: rgba(245, 158, 11, 0.10);
+      color: #fde68a;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
     .button {
       display: inline-block;
-      margin: 1rem 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #38bdf8;
-      color: #0f172a;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
+      padding: 12px 16px;
+      border-radius: 10px;
       text-decoration: none;
-      transition: background 0.3s ease;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--accent);
+      color: #020617;
     }
-    .button:hover { background-color: #0ea5e9; }
-    .button-outline {
-      background: transparent;
-      color: #38bdf8;
-      border: 1px solid #38bdf8;
+
+    .button.secondary {
+      background: rgba(30, 41, 59, 0.9);
+      color: var(--text);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    section {
+      margin-top: 26px;
+      padding: clamp(22px, 4vw, 32px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(17, 24, 39, 0.92);
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      color: #e0f2fe;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 1.08rem;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .lead {
+      margin-top: 0;
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 16px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      border-left: 4px solid var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      padding: 16px 18px;
+      border-radius: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    .small {
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--soft);
+      padding: 28px 0 0;
+      font-size: 0.92rem;
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Krishan Kumar</h1>
-    <h3>AWS Certified Cloud Practitioner · Aspiring Cloud Engineer</h3>
+  <main class="container">
+    <header class="hero">
+      <div class="eyebrow">Cloud Portfolio</div>
+      <h1>Krishan Kumar</h1>
+      <div class="subtitle">AWS Certified Cloud Practitioner · Aspiring Cloud Engineer</div>
 
-    <p>Welcome to my cloud portfolio! I'm passionate about cloud computing and eager to start my career in the industry.</p>
+      <p>
+        I’m transitioning into cloud and IT through hands-on AWS projects, Cert IV Information Technology study,
+        and practical troubleshooting experience. This portfolio demonstrates cloud hosting, serverless backend logic,
+        monitoring, CI/CD, security hardening and documentation.
+      </p>
 
-    <h2>Skills</h2>
-    <p>AWS · Linux · Networking · Python · GitHub · Cloud Security</p>
+      <div class="badge-row">
+        <span class="badge gold">AWS Cloud Practitioner</span>
+        <span class="badge">Cert IV IT - TAFE NSW Digital</span>
+        <span class="badge">S3</span>
+        <span class="badge">CloudFront</span>
+        <span class="badge">Lambda</span>
+        <span class="badge">DynamoDB</span>
+        <span class="badge">CloudWatch</span>
+        <span class="badge">GitHub Actions</span>
+        <span class="badge">Cloud Security</span>
+      </div>
 
-    <h2>Certifications</h2>
-    <p>AWS Certified Cloud Practitioner</p>
+      <div class="button-row">
+        <a href="https://krishankcloud.com/project-details.html" class="button">View Project Details</a>
+        <a href="https://dashboard.krishankcloud.com" class="button secondary" target="_blank" rel="noopener">View Live Dashboard</a>
+        <a href="https://github.com/krishank-cloud" class="button secondary" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </header>
 
-    <h2>Projects</h2>
-    <p>Cloud Resume + Live Dashboard with secure CloudFront OAC, API Gateway + Lambda (Python), DynamoDB, CI/CD, and CloudWatch metrics.</p>
+    <section>
+      <h2>Featured AWS Project</h2>
+      <p class="lead">
+        <strong>Cloud Resume + Live Operations Dashboard</strong> — a serverless AWS portfolio project built with
+        S3, CloudFront, Route 53, ACM, API Gateway, Lambda, DynamoDB, CloudWatch and GitHub Actions.
+      </p>
 
-    <a href="https://github.com/krishank-cloud" class="button" target="_blank"> GitHub</a>
-    <a href="https://dashboard.krishankcloud.com" class="button" target="_blank"> View Live Dashboard</a>
-    <a href="https://krishankcloud.com/project-details.html" class="button button-outline"> Project Details</a>
-  </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Secure Static Hosting</h3>
+          <p>Hosted the portfolio using S3 and CloudFront, with HTTPS through ACM and DNS routing through Route 53.</p>
+        </div>
+
+        <div class="card">
+          <h3>Private S3 Access</h3>
+          <p>Worked with CloudFront Origin Access Control to keep the S3 bucket private while serving content securely.</p>
+        </div>
+
+        <div class="card">
+          <h3>Serverless Visitor Counter</h3>
+          <p>Built a visitor counter using API Gateway, Lambda and DynamoDB to track total and unique visitor activity.</p>
+        </div>
+
+        <div class="card">
+          <h3>CloudWatch Dashboard</h3>
+          <p>Added monitoring visibility with CloudWatch logs, metrics and a live dashboard for visitor statistics.</p>
+        </div>
+
+        <div class="card">
+          <h3>CI/CD Deployment</h3>
+          <p>Configured GitHub Actions to deploy updates to S3 and invalidate CloudFront after changes are pushed.</p>
+        </div>
+
+        <div class="card">
+          <h3>Security and Secrets</h3>
+          <p>Used GitHub Secrets for deployment credentials and moved Git access away from password-based authentication.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Troubleshooting Wins</h2>
+      <p class="lead">
+        This project gave me real practice debugging cloud issues across frontend, backend, deployment and AWS service layers.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>403 AccessDenied</h3>
+          <p>Investigated missing files, S3 access, bucket policy behaviour and CloudFront origin configuration.</p>
+        </div>
+
+        <div class="card">
+          <h3>API / Lambda Errors</h3>
+          <p>Worked through API Gateway and Lambda issues using testing, logs and response checking.</p>
+        </div>
+
+        <div class="card">
+          <h3>DynamoDB Issues</h3>
+          <p>Handled update expression problems, including reserved keyword behaviour in DynamoDB.</p>
+        </div>
+
+        <div class="card">
+          <h3>GitHub Actions Failure</h3>
+          <p>Debugged a workflow deployment issue caused by a broken S3 sync exclude line.</p>
+        </div>
+
+        <div class="card">
+          <h3>CloudFront Cache</h3>
+          <p>Used invalidations to solve stale content problems after deployment changes.</p>
+        </div>
+
+        <div class="card">
+          <h3>CSP / Browser Security</h3>
+          <p>Worked through security header and Content Security Policy issues affecting scripts, styles and API calls.</p>
+        </div>
+      </div>
+
+      <div class="highlight">
+        This project is not just a website — it is a practical cloud troubleshooting project that shows how I work through
+        access, permissions, deployment, monitoring and reliability problems.
+      </div>
+    </section>
+
+    <section>
+      <h2>Current Skills Focus</h2>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Cloud and Infrastructure</h3>
+          <ul>
+            <li>AWS fundamentals and cloud architecture basics</li>
+            <li>S3, CloudFront, Route 53, ACM and Origin Access Control</li>
+            <li>Serverless basics with API Gateway, Lambda and DynamoDB</li>
+            <li>Monitoring with CloudWatch logs, metrics and dashboards</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Support and DevOps</h3>
+          <ul>
+            <li>Incident-style troubleshooting and documentation</li>
+            <li>Git, GitHub and SSH-based authentication</li>
+            <li>GitHub Actions CI/CD and deployment debugging</li>
+            <li>AWS CLI, cache invalidations and deployment verification</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Learning Path</h2>
+      <p>
+        I’m currently studying Certificate IV in Information Technology through TAFE NSW Digital while building practical
+        cloud projects to strengthen my AWS, networking, Linux, security and troubleshooting skills.
+      </p>
+
+      <div class="button-row">
+        <a href="https://krishankcloud.com/project-details.html" class="button">Read Full Project Breakdown</a>
+        <a href="https://dashboard.krishankcloud.com" class="button secondary" target="_blank" rel="noopener">Open Dashboard</a>
+      </div>
+
+      <p class="small">
+        This portfolio is actively being improved as part of my transition into cloud engineering.
+      </p>
+    </section>
+
+    <footer>
+      Built by Krishan Kumar · AWS Cloud Practitioner · Aspiring Cloud Engineer
+    </footer>
+  </main>
 </body>
 </html>
