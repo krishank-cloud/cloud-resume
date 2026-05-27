@@ -220,6 +220,22 @@
       white-space: pre;
     }
 
+
+    .diagram-wrap {
+      margin-top: 18px;
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .diagram-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
     .timeline {
       display: grid;
       gap: 14px;
@@ -428,6 +444,10 @@ API Gateway  --->  Lambda Python Function  --->  DynamoDB
                                                         |
                                                         v
                                              CloudWatch Logs + Metrics</div>
+
+      <div class="diagram-wrap">
+        <img src="assets/aws-architecture.svg" alt="AWS architecture diagram showing Route 53, ACM, CloudFront, private S3, API Gateway, Lambda, DynamoDB, CloudWatch and GitHub Actions." />
+      </div>
     </section>
 
     <section>
