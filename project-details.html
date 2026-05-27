@@ -419,32 +419,6 @@
         access a private S3 bucket. The dashboard and visitor counter use a serverless backend with API Gateway,
         Lambda and DynamoDB, with logs and metrics going into CloudWatch.
       </p>
-
-      <div class="architecture">User Browser
-   |
-   v
-Route 53 DNS + ACM TLS Certificate
-   |
-   v
-CloudFront Distribution
-   |
-   v
-Private S3 Bucket protected by Origin Access Control
-   |
-   +----------------------------------------------------+
-                                                        |
-                                                        v
-                                                Portfolio Website
-                                                        |
-                                                        v
-Dashboard / Visitor Counter Frontend
-                                                        |
-                                                        v
-API Gateway  --->  Lambda Python Function  --->  DynamoDB
-                                                        |
-                                                        v
-                                             CloudWatch Logs + Metrics</div>
-
       <div class="diagram-wrap">
         <img src="assets/aws-architecture.svg" alt="AWS architecture diagram showing Route 53, ACM, CloudFront, private S3, API Gateway, Lambda, DynamoDB, CloudWatch and GitHub Actions." />
       </div>
