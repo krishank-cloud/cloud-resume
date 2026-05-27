@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS Project Details | Krishan Kumar</title>
+  <meta name="description" content="AWS Cloud Resume and Operations Dashboard project by Krishan Kumar using S3, CloudFront, Lambda, DynamoDB, API Gateway, CloudWatch and GitHub Actions." />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    a { color: var(--accent); }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 42px;
+      background: linear-gradient(135deg, #111827, #1e293b);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      border: 1px solid var(--border);
+      background: rgba(56, 189, 248, 0.08);
+      color: #e0f2fe;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+
+    section {
+      margin-top: 28px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #e0f2fe;
+      font-size: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 1.08rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    p, li { color: var(--muted); }
+
+    ul { padding-left: 20px; }
+
+    li { margin-bottom: 8px; }
+
+    .architecture {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      overflow-x: auto;
+      color: #dbeafe;
+      font-family: "Courier New", monospace;
+      font-size: 0.92rem;
+      white-space: pre;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--border);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #020617;
+      border-color: var(--accent);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: var(--card);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 24px 0 10px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      .hero, section { padding: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <a class="back-link" href="index.html">← Back to Portfolio</a>
+
+    <div class="hero">
+      <h1>Cloud Resume + Live Operations Dashboard</h1>
+      <p>
+        A hands-on AWS portfolio project built to demonstrate cloud support skills across static hosting,
+        secure content delivery, serverless APIs, database updates, monitoring, CI/CD deployment and troubleshooting.
+      </p>
+
+      <div class="badge-row">
+        <span class="badge">AWS S3</span>
+        <span class="badge">CloudFront</span>
+        <span class="badge">Route 53</span>
+        <span class="badge">ACM</span>
+        <span class="badge">API Gateway</span>
+        <span class="badge">Lambda</span>
+        <span class="badge">DynamoDB</span>
+        <span class="badge">CloudWatch</span>
+        <span class="badge">GitHub Actions</span>
+        <span class="badge">Origin Access Control</span>
+      </div>
+    </div>
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        This project is a live AWS-hosted portfolio website. It uses CloudFront in front of a private S3 bucket,
+        a serverless visitor counter built with API Gateway, Lambda and DynamoDB, and a live dashboard to show
+        visitor metrics and cloud monitoring concepts.
+      </p>
+    </section>
+
+    <section>
+      <h2>Architecture</h2>
+      <div class="architecture">User Browser
+   |
+   v
+Route 53 + ACM
+   |
+   v
+CloudFront Distribution
+   |
+   v
+Private S3 Bucket with Origin Access Control
+   |
+   +-------------------------------+
+                                   |
+                                   v
+                           Portfolio Website
+                                   |
+                                   v
+API Gateway  --->  Lambda  --->  DynamoDB
+                                   |
+                                   v
+                              CloudWatch Metrics</div>
+    </section>
+
+    <section>
+      <h2>AWS Services Used</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>S3 + CloudFront</h3>
+          <p>Hosts the static portfolio and delivers content securely through CloudFront.</p>
+        </div>
+        <div class="card">
+          <h3>Origin Access Control</h3>
+          <p>Keeps the S3 bucket private while allowing CloudFront to access the required files.</p>
+        </div>
+        <div class="card">
+          <h3>API Gateway + Lambda</h3>
+          <p>Provides a serverless API used by the visitor counter and dashboard.</p>
+        </div>
+        <div class="card">
+          <h3>DynamoDB</h3>
+          <p>Stores total visitor count and unique visitor tracking records.</p>
+        </div>
+        <div class="card">
+          <h3>CloudWatch</h3>
+          <p>Used for logs, custom metrics and dashboard visibility.</p>
+        </div>
+        <div class="card">
+          <h3>GitHub Actions</h3>
+          <p>Automates deployment to S3 and CloudFront cache invalidation after updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Support Engineering Skills Demonstrated</h2>
+      <ul>
+        <li>Configured AWS services across hosting, CDN, API, database and monitoring layers.</li>
+        <li>Troubleshot CloudFront and S3 access issues while improving the private bucket design.</li>
+        <li>Debugged Lambda and API Gateway behaviour using logs and response testing.</li>
+        <li>Worked through DynamoDB update expression issues, including reserved keyword handling.</li>
+        <li>Created CloudWatch metrics and dashboard views for visitor activity.</li>
+        <li>Used GitHub Actions secrets and CI/CD to deploy updates consistently.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Troubleshooting Wins</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>403 Access Issues</h3>
+          <p>Investigated S3 and CloudFront access problems while configuring secure private bucket access.</p>
+        </div>
+        <div class="card">
+          <h3>Lambda/API Errors</h3>
+          <p>Reviewed API behaviour and logs when testing visitor counter requests.</p>
+        </div>
+        <div class="card">
+          <h3>CloudFront Cache</h3>
+          <p>Used cache invalidations to make updated website files appear after deployment changes.</p>
+        </div>
+        <div class="card">
+          <h3>Security Headers/CSP</h3>
+          <p>Worked through browser-side security restrictions affecting scripts, styles and API calls.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why This Project Matters for AWS Cloud Support</h2>
+      <p>
+        This project practises the same thinking used in cloud support: understanding how services connect,
+        reading symptoms, checking configuration, reviewing logs, isolating causes, documenting fixes and
+        improving reliability over time.
+      </p>
+
+      <div class="cta-row">
+        <a class="button primary" href="https://dashboard.krishankcloud.com" target="_blank" rel="noopener">View Live Dashboard</a>
+        <a class="button secondary" href="https://github.com/krishank-cloud/Cloud-Portfolio" target="_blank" rel="noopener">View GitHub Repository</a>
+      </div>
+    </section>
+
+    <footer>
+      Built by Krishan Kumar · AWS Cloud Practitioner · Aspiring AWS Cloud Support Associate
+    </footer>
+  </main>
+</body>
+</html>

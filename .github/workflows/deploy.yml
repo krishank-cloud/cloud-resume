@@ -6,6 +6,7 @@ on:
     paths:
       - "index.html"
       - "dashboard.html"
+      - "project-details.html"
       - "assets/**"
       - ".github/workflows/**"
   workflow_dispatch: {}
@@ -35,6 +36,7 @@ jobs:
             --exclude "README.md" \
             --exclude "index.html" \
             --exclude "dashboard.html"
+            --exclude "project-details.html"
 
       # Upload HTML with correct headers so browsers don’t cache stale pages
       - name: Upload HTML with cache-busting headers
@@ -43,6 +45,9 @@ jobs:
             --content-type "text/html; charset=utf-8" \
             --cache-control "no-store"
           aws s3 cp dashboard.html s3://${{ secrets.S3_BUCKET }}/dashboard.html \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "no-store"
+          aws s3 cp project-details.html s3://${{ secrets.S3_BUCKET }}/project-details.html \
             --content-type "text/html; charset=utf-8" \
             --cache-control "no-store"
 
