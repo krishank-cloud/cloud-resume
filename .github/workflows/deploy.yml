@@ -35,7 +35,7 @@ jobs:
             --exclude "deploy*.*" \
             --exclude "README.md" \
             --exclude "index.html" \
-            --exclude "dashboard.html"
+            --exclude "dashboard.html" \
             --exclude "project-details.html"
 
       # Upload HTML with correct headers so browsers don’t cache stale pages
